@@ -1,0 +1,6 @@
+ No of comments added ..... so we need to pass the post id for every comment 
+ Upcoming contests wala karna hain
+
+
+now:
+  1. User - Register / Login / Email Activation / Forget Password / Confirm Password and finally back to home page

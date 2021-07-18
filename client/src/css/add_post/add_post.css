@@ -1,0 +1,79 @@
+.add_post_container{
+    width:90vw;
+    height: fit-content;
+    margin-left:5vw;
+    margin-top:5vh;
+    border:1px solid black;
+    padding:1rem;
+}
+.add_post_container .title{
+    width: 100%;
+    margin-bottom:2vh;
+    margin-top:2vh;
+}
+
+.add_post_container .title input{
+    width: 100%;
+    padding:0.5rem 1rem;
+    font-size: medium;
+    border-radius: 8px;
+}
+
+.add_post_container .filesAdded{
+    width:50vw;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+    margin-left:30vw;
+}
+
+.add_post_container .buttonStyle{
+    border:2px solid white;
+    cursor:pointer;
+    width: 12rem;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.add_post_container .buttonStyle:hover{
+    transition: all 0.3s ease-out;
+    transform: scale(1.06);
+    background-color:rgba(33, 204, 247, 0.493);
+}
+
+.add_post_container .custom-file-upload{
+    margin: 1rem;
+}
+
+.add_post_container .submitBtn{
+   width: 30vw;
+   margin-left:30vw;
+}
+
+.add_post_container .nav_add{
+    position: absolute;
+    width:90vw;
+    background-color: black;
+    transform: translate(-1rem,-1rem);
+}
+
+.add_post_container .nav_add ul{
+    width:90vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.add_post_container .nav_add ul li{
+   width:45vw;
+   list-style: none;
+   padding: 1rem;
+   font-size: 25px;
+   font-weight: 600;
+   text-align: center;
+   transform: translateX(-1rem);
+   color:black;
+   cursor: pointer;
+}

@@ -1,0 +1,45 @@
+.editor {
+    background: #f3f1f2;
+    font-family: sans-serif;
+    width:100%;
+  }
+  
+.editor .ql-container {
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    background: #fefcfc;
+  }
+  
+  /* Snow Theme */
+.editor .ql-snow.ql-toolbar {
+    display: block;
+    background: #eaecec;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+  }
+  
+.editor .ql-container{
+    font-size: medium;
+}
+
+.editor .ql-editor {
+    min-height: 18em;
+}
+
+#tab-toolbar{
+    height:0;
+    display: none;
+}
+
+#tab-panel{
+    border: 1px solid rgba(177, 172, 172, 0.589);
+    padding:1rem;
+    background: rgba(132, 198, 224, 0.096);
+}
+
+#tab-panel span{
+    margin-right:0.3rem;
+    margin-top:0.6rem;
+    margin-bottom:0.5rem;
+    padding:0.2rem;
+}

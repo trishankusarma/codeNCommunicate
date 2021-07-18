@@ -1,0 +1,8 @@
+.toast_msg_success{
+    color: rgb(116, 255, 47);
+    font-size:1rem !important
+}
+.toast_msg_error{
+    color: red;
+    font-size:1rem !important
+}

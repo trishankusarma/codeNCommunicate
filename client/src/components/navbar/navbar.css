@@ -1,0 +1,12 @@
+.navbarContainer{
+    width:100vw;
+}
+
+.nav-item{
+    margin-left:1vw
+}
+
+.nav-link{
+    color:white;
+    white-space: nowrap;
+}

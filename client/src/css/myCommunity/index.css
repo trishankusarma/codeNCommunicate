@@ -1,0 +1,74 @@
+/* Color Variables */
+/* Flex Grid - Mixins */
+/* Styles */
+html, body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    background: #f1f1f1;
+  }
+  
+  #app-container {
+    width: 100%;
+    display: block;
+    position: relative;
+    margin: 10px auto;
+    background: #fff;
+    -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .contact-list li {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 15px 10px 0;
+  }
+  
+  .contact-list {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .contact-list li {
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #919191;
+    padding: 10px;
+  }
+  
+  .contact-list li:nth-child(even) {
+    background: #f7f7f7;
+  }
+  
+  .contact-list img {
+    border-radius: 50%;
+    float: left;
+    margin-left: 10px;
+    width: 5%;
+    height: 45px;
+    margin-right: 10px;
+  }
+  i{
+    margin-right: 8px;
+  }
+  .contact-list .heading--name {
+    color: #444;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .contact-list .contact-info {
+    width: 80%;
+    display: inline;  
+  }
+  
+  /*# sourceMappingURL=style1.css.map */
