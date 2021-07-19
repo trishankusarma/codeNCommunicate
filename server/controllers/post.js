@@ -53,11 +53,11 @@ const postController = {
                     const posts = await Post.find({
                         postType : 0
                     })
-                    .limit(parseInt(limit))
-                    .skip(parseInt(skip))
                     .sort({
-                         "created_at":-1
-                    }).populate('comments','content author likes')
+                        "created_at":-1
+                    }).limit(parseInt(limit))
+                    .skip(parseInt(skip))
+                    .populate('comments','content author likes')
                     .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    
 
                     console.log("posts", posts)
@@ -70,12 +70,11 @@ const postController = {
                 case 1:
                     const doubts = await Post.find({
                         postType : -1
-                    })
-                    .limit(parseInt(limit))
+                    }).sort({
+                        "created_at":-1
+                    }).limit(parseInt(limit))
                     .skip(parseInt(skip))
-                    .sort({
-                         "created_at":-1
-                    }).populate('comments','content author likes')
+                    .populate('comments','content author likes')
                     .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    
 
                     console.log(doubts)
@@ -151,7 +150,7 @@ const postController = {
 
             post['images'] = []
 
-            if(req.files){
+            if(req.files && req.files.images){
                 req.files.images.map((img)=>{
                     post['images'] = post['images'].concat({
                         image:img.buffer,
@@ -169,6 +168,8 @@ const postController = {
             })
 
         } catch (error) {
+
+            console.log(error)
             
             return res.json(internalServerError)
 

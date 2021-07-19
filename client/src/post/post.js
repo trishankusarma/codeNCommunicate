@@ -26,8 +26,6 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const [postLiked, setPostLiked] = useState(false);
 
-  const [count, setCount] = useState(1);
-
   const [postNoOfLikes, setPostNoOfLikes] = useState(null);
 
   const [postNoOfComments, setPostNoOfComments] = useState(null);
@@ -44,12 +42,11 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   useEffect(() => {
     if (!isLogged || !user || !userFollowers) {
-      setError(count + " Authenticate to like, comment and follow");
+      setError(" Authenticate to like, comment and follow");
 
       setUserFollowed(false);
       setPostLiked(false);
 
-      setCount(count + 1);
       return;
     }
 
@@ -76,9 +73,8 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const LikePost = async () => {
     if (!isLogged) {
-      setError(count + ". Authenticate to like, comment and follow!");
+      setError("Authenticate to like, comment and follow!");
 
-      setCount(count + 1);
       return;
     }
 
@@ -97,8 +93,7 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   useEffect(() => {
     if (!isLogged || !user) {
-      setError(count + " Authenticate to like, comment and follow");
-      setCount(count + 1);
+      setError(" Authenticate to like, comment and follow");
       return;
     }
 
@@ -120,9 +115,8 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const followUser = async () => {
     if (!isLogged) {
-      setError(count + ". Authenticate to like, comment and follow!");
+      setError("Authenticate to like, comment and follow!");
 
-      setCount(count + 1);
       return;
     }
 
@@ -160,11 +154,10 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
     e.preventDefault();
 
     if (!isLogged || !user) {
-      setError(count + " Authenticate to like, comment and follow");
+      setError(" Authenticate to like, comment and follow");
 
       setComment("");
 
-      setCount(count + 1);
       return;
     }
 

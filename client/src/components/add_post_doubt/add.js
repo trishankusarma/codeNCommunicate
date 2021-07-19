@@ -27,6 +27,8 @@ const Home = ({location}) => {
 
     const { editId } = queryString.parse(location.search)
 
+    const [ postType , setPostType ] = useState(null)
+
     useEffect(async () => {
          
         if(editId){
@@ -39,6 +41,8 @@ const Home = ({location}) => {
                 setCategory(res.data.post.postType)
                 setTitle(res.data.post.title)
                 setEditorHtml(res.data.post.description)
+
+                setPostType(res.data.post.postType)
 
                 setImages(res.data.post.images)
              }else{
@@ -128,7 +132,9 @@ const Home = ({location}) => {
     return (
         <div className="add_post_container">
 
-            <nav className="nav_add"> 
+            {
+                !editId
+                ? <nav className="nav_add"> 
                 <ul className="ul_add">
                     <li className="li_add" 
                        style={ category===1 ? activeLiColor : inActiveColor }
@@ -140,13 +146,15 @@ const Home = ({location}) => {
                     >Doubt</li>
                 </ul>
             </nav>
+            : null
+            }
 
             <form onSubmit={onSubmit} >
                 
                 <h2 style={{textAlign:"center",marginBottom:'1rem',marginTop:'15vh'}}>
                     { 
                        editId ?
-                          category===1 ? "Edit Post" : "Edit Doubt"
+                          postType===0 ? "Edit Post" : "Edit Doubt"
                         : category===1 ? "New Post" : "New Doubt"
                     }
                 </h2>
@@ -163,20 +171,24 @@ const Home = ({location}) => {
 
                 <QuillEditor editorHtml={editorHtml} setEditorHtml={setEditorHtml}/>
 
-                <div className="filesAdded">
-                    <input 
-                        type="file"
-                        name='file1'
-                        onChange = {(e)=>setFile(e.target.files[0])}
-                    />
-                    
-                    <input
-                      onClick = {AddImages}
-                      className="buttonStyle"
-                      style={{background:' #90ee90',textAlign:'center'}}
-                      value='Add Image'
-                    />
-                </div>
+               {
+                   editId ?
+                     null :
+                    <div className="filesAdded">
+                        <input 
+                            type="file"
+                            name='file1'
+                            onChange = {(e)=>setFile(e.target.files[0])}
+                        />
+                        
+                        <input
+                            onClick = {AddImages}
+                            className="buttonStyle"
+                            style={{background:' #90ee90',textAlign:'center'}}
+                            value='Add Image'
+                        />
+                    </div>
+               }
 
                 <ImageSlider images={images} type={
                     editId ? 2 : 1
