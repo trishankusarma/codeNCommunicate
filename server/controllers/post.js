@@ -40,7 +40,9 @@ const postController = {
         // profileImage profileImageType
         try {
            
-            const { postType }  = req.query
+            const { postType , limit , skip }  = req.query
+
+            console.log("postType" , postType)
 
             //type===0 -> Posts
             //type===1 -> Doubts
@@ -50,10 +52,15 @@ const postController = {
                 case 0:
                     const posts = await Post.find({
                         postType : 0
-                    }).sort({
+                    })
+                    .limit(parseInt(limit))
+                    .skip(parseInt(skip))
+                    .sort({
                          "created_at":-1
                     }).populate('comments','content author likes')
                     .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    
+
+                    console.log("posts", posts)
         
                     return res.json({
                         success:1,
@@ -63,7 +70,10 @@ const postController = {
                 case 1:
                     const doubts = await Post.find({
                         postType : 1
-                    }).sort({
+                    })
+                    .limit(parseInt(limit))
+                    .skip(parseInt(skip))
+                    .sort({
                          "created_at":-1
                     }).populate('comments','content author likes')
                     .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    

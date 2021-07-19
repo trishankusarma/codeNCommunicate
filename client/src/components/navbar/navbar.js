@@ -93,7 +93,7 @@ const Navbar = () => {
               style={{ color: "white" }}
               style={{ position: "relative", left: "-7vw", fontSize: "2rem" }}
             >
-              Coding Community
+              codeNcommunicate
             </Link>
           </div>
 

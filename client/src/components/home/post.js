@@ -12,6 +12,8 @@ import Comments from "../comments/comments";
 
 import { useHistory } from "react-router-dom";
 
+import Button from '@material-ui/core/button'
+
 const Post = ({ post, profile , editPost , deletePost , userId }) => {
   const {
     isLogged,
@@ -216,6 +218,10 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
   };
 
   const setImageUrl = (owner) => {
+
+    if(!owner)
+       return
+
     if (owner.profileImage) {
       const base64Flag = `data:${owner.profileImageType};base64,`;
 
@@ -246,7 +252,7 @@ const visitProfile = async (_id) => {
   return (
     <div class="outer-div">
       <div class="heading">
-        <div class="left" style={{cursor:'pointer'}} onClick={()=>visitProfile(post.owner._id)}>
+        <div class="left" style={{cursor:'pointer'}} onClick={()=>visitProfile(post?.owner?._id)}>
           <img src={setImageUrl(post.owner)} alt="" />
           <h4 style={{ color: "white" }}>{post.owner.name}</h4>
         </div>
@@ -255,7 +261,7 @@ const visitProfile = async (_id) => {
           <div class="right">
             <button>
               <a
-                href={`https://codeforces.com/profile/${post.owner.cf_handle}`}
+                href={`https://codeforces.com/profile/${post?.owner?.cf_handle}`}
                 target="_blank"
               >
                 <img class="cf" src="image/cf.png" alt="" />
@@ -264,7 +270,7 @@ const visitProfile = async (_id) => {
 
             <button>
               <a
-                href={`https://www.codechef.com/users/${post.owner.cc_handle}`}
+                href={`https://www.codechef.com/users/${post?.owner?.cc_handle}`}
                 target="_blank"
               >
                 <img class="cc" src="image/cc.png" alt="cc" />
@@ -272,7 +278,7 @@ const visitProfile = async (_id) => {
             </button>
 
             <button>
-              <a href={`${post.owner.ln_handle}`} target="_blank">
+              <a href={`${post?.owner.ln_handle}`} target="_blank">
                 <img class="linkdin cc" src="image/linkedin.png" alt="" />
               </a>
             </button>
@@ -291,17 +297,19 @@ const visitProfile = async (_id) => {
           !userId
           ? 
           <div className="right">
-              <button
-                  onClick={()=>editPost(post._id)}
+              <Button
+                  onClick={()=>editPost(post?._id)}
+                  style={{ background:'white', color:'black',borderRadius:'10px'}}
               >
                    EDIT
-              </button>
+              </Button>
 
-              <button
-                  onClick={()=>deletePost(post._id)}
+              <Button
+                  onClick={()=>deletePost(post?._id)}
+                  style={{ background:'white', color:'black', borderRadius:'10px'}}
               >
                    DELETE
-              </button>
+              </Button>
           </div>
           : null
         }
@@ -313,18 +321,18 @@ const visitProfile = async (_id) => {
           name=""
           id=""
           placeholder="title.."
-          value={post.title}
+          value={post?.title}
           readOnly
         />
 
         <br />
 
-        <div className="description">{parse(post.description)}</div>
+        <div className="description" style={{marginLeft:"0px"}}>{parse(post?.description)}</div>
 
         <br />
       </form>
 
-      <ImageSlider images={post.images} type={2} />
+      <ImageSlider images={post?.images} type={2} />
 
       <div class="like-count">
         <a href="">{postNoOfLikes} Likes</a>
