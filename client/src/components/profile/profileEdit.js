@@ -8,7 +8,7 @@ import AxiosInstance from "../../utilsClient/AxiosInstance";
 import { useHistory } from "react-router-dom";
 
 const ProfileEdit = () => {
-  const { user, setError, setResponse } = useContext(CommonContext);
+  const { user, setError, setResponse , setUser } = useContext(CommonContext);
 
   const history = useHistory();
 
@@ -127,6 +127,7 @@ const ProfileEdit = () => {
     if (res.data.success === 1) {
       setResponse("Profile Updated");
 
+      setUser(res.data.user)
       return history.push("/user");
     }
     return setError(res.data.msg);

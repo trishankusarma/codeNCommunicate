@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import ImageSlider from "../imageSlider/imageSlider";
+import ImageSlider from "../components/imageSlider/imageSlider";
 
 import parse from "html-react-parser";
 
-import Axiosinstance from "../../utilsClient/AxiosInstance";
+import Axiosinstance from "../utilsClient/AxiosInstance";
 
-import CommonContext from "../../contexts/common/CommonContext";
+import CommonContext from "../contexts/common/CommonContext";
 
-import Comments from "../comments/comments";
+import Comments from "../components/comments/comments";
 
 import { useHistory } from "react-router-dom";
 
@@ -26,8 +26,6 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const [postLiked, setPostLiked] = useState(false);
 
-  const [count, setCount] = useState(1);
-
   const [postNoOfLikes, setPostNoOfLikes] = useState(null);
 
   const [postNoOfComments, setPostNoOfComments] = useState(null);
@@ -44,12 +42,11 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   useEffect(() => {
     if (!isLogged || !user || !userFollowers) {
-      setError(count + " Authenticate to like, comment and follow");
+      setError(" Authenticate to like, comment and follow");
 
       setUserFollowed(false);
       setPostLiked(false);
 
-      setCount(count + 1);
       return;
     }
 
@@ -76,9 +73,8 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const LikePost = async () => {
     if (!isLogged) {
-      setError(count + ". Authenticate to like, comment and follow!");
+      setError("Authenticate to like, comment and follow!");
 
-      setCount(count + 1);
       return;
     }
 
@@ -97,8 +93,7 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   useEffect(() => {
     if (!isLogged || !user) {
-      setError(count + " Authenticate to like, comment and follow");
-      setCount(count + 1);
+      setError(" Authenticate to like, comment and follow");
       return;
     }
 
@@ -120,9 +115,8 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
 
   const followUser = async () => {
     if (!isLogged) {
-      setError(count + ". Authenticate to like, comment and follow!");
+      setError("Authenticate to like, comment and follow!");
 
-      setCount(count + 1);
       return;
     }
 
@@ -160,11 +154,10 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
     e.preventDefault();
 
     if (!isLogged || !user) {
-      setError(count + " Authenticate to like, comment and follow");
+      setError(" Authenticate to like, comment and follow");
 
       setComment("");
 
-      setCount(count + 1);
       return;
     }
 
@@ -259,29 +252,43 @@ const visitProfile = async (_id) => {
 
         {!profile ? (
           <div class="right">
-            <button>
-              <a
-                href={`https://codeforces.com/profile/${post?.owner?.cf_handle}`}
-                target="_blank"
-              >
-                <img class="cf" src="image/cf.png" alt="" />
-              </a>
-            </button>
+            {
+              post?.owner?.cf_handle
+               ?  
+              <button>
+               <a
+                 href={`https://codeforces.com/profile/${post.owner.cf_handle}`}
+                 target="_blank"
+               >
+                 <img class="cf" src="image/cf.png" alt="" />
+               </a>
+             </button>
+             : null
+            }
 
-            <button>
+            {
+              post?.owner?.cc_handle
+              ?
+              <button>
               <a
-                href={`https://www.codechef.com/users/${post?.owner?.cc_handle}`}
+                href={`https://www.codechef.com/users/${post.owner.cc_handle}`}
                 target="_blank"
               >
                 <img class="cc" src="image/cc.png" alt="cc" />
               </a>
             </button>
-
-            <button>
-              <a href={`${post?.owner.ln_handle}`} target="_blank">
+             : null
+            }
+            {
+              post?.owner?.ln_handle
+              ?  
+             <button>
+              <a href={`${post.owner.ln_handle}`} target="_blank">
                 <img class="linkdin cc" src="image/linkedin.png" alt="" />
               </a>
             </button>
+            : null
+            }
 
             <button>
               <img
