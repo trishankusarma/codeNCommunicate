@@ -115,18 +115,7 @@ const MyCommunity = () => {
                 </div>
               
               </div>
-              <button
-                type="button"
-                className="btn  btn-success "
-                style={{
-                  borderRadius: "50px",
-                  display: "flex",
-                  marginRight: "16px",
-                }}
-              >
-                <i className="bi bi-chat"></i>
-                Chat
-              </button>
+
               <button
                 type="button"
                 className="btn  btn-danger"

@@ -435,14 +435,19 @@ const userController = {
       const updates = Object.keys(req.body);
       const user = req.user;
 
-      updates.forEach((update) => (user[update] = req.body[update]));
+      updates.forEach((update) => (update!=='profileImage' ? user[update] = req.body[update] : null));
 
-      if (req.file) {
+      if(req.file){
+
+        console.log("req.file",req.file)
+
         user["profileImage"] = req.file.buffer;
         user["profileImageType"] = req.file.mimetype;
       }
 
       await user.save();
+
+      console.log("USER",user)
 
       res.json({
         success: 1,

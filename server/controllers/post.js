@@ -42,7 +42,7 @@ const postController = {
            
             const { postType , limit , skip }  = req.query
 
-            console.log("postType" , postType)
+            console.log("postType" , postType, "limit", limit , "skip", skip )
 
             //type===0 -> Posts
             //type===1 -> Doubts
@@ -69,7 +69,7 @@ const postController = {
                 
                 case 1:
                     const doubts = await Post.find({
-                        postType : 1
+                        postType : -1
                     })
                     .limit(parseInt(limit))
                     .skip(parseInt(skip))
@@ -77,6 +77,8 @@ const postController = {
                          "created_at":-1
                     }).populate('comments','content author likes')
                     .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    
+
+                    console.log(doubts)
         
                     return res.json({
                         success:1,

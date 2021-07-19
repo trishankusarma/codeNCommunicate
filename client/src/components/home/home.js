@@ -6,7 +6,7 @@ import AxiosInstance from '../../utilsClient/AxiosInstance'
 
 import Loader from '../Loader/Loader'
 
-import Post from "./post";
+import Post from "../../post/post";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -19,12 +19,17 @@ const Home = () => {
         const [ loadMore , setLoadMore ] = useState(true)
 
         useEffect(async () => {
+
+            const limit = 2
            
-            const res = await AxiosInstance.get(`/?postType=0&limit=2&skip=${skipIndex}`)
+            const res = await AxiosInstance.get(`/?postType=0&limit=${limit}&skip=${skipIndex}`)
 
             if(res.data.posts && res.data.posts.length>0){
                  
-                posts ? setPosts([...posts , res.data.posts]) : setPosts(res.data.posts)
+                posts ? setPosts([...posts , ...res.data.posts]) : setPosts(res.data.posts)
+
+                if(res.data.posts.length<limit)
+                    setLoadMore(false)
             }else{
                 setLoadMore(false)
             }

@@ -6,40 +6,83 @@ import AxiosInstance from '../../utilsClient/AxiosInstance'
 
 import Loader from '../Loader/Loader'
 
-import Post from "../home/post";
+import Post from "../../post/post";
+
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Home = () => {
 
         const [ doubts , setDoubts ] = useState(null)
 
-        useEffect(async () => {
-           
-            const res = await AxiosInstance.get('/?postType=1')
+        const [ skipIndex , setSkipIndex ] = useState(0)
 
-            setDoubts(res.data.doubts)
-        }, [])
+        const [ loadMore , setLoadMore ] = useState(true)
+
+        useEffect(async () => {
+
+            const limit = 2
+           
+            const res = await AxiosInstance.get(`/?postType=1&limit=${limit}&skip=${skipIndex}`)
+
+            if(res.data.doubts && res.data.doubts.length>0){
+                 
+                doubts ? setDoubts([...doubts , ...res.data.doubts ]) : setDoubts(res.data.doubts)
+
+                if(res.data.doubts.length<limit)
+                    setLoadMore(false)
+            }else{
+                setLoadMore(false)
+            }
+
+        }, [skipIndex])
+
+        const fetchMoreData = ()=>{
+             setSkipIndex(skipIndex+2)
+        }
 
         return (
             <div className="homeContainer">
-               {
-                   doubts 
-                    ?  
-                      doubts.length===0 ?
-                    
-                      <div className="loader" style={{textAlign:'center',marginTop:'20vh',fontSize:'5rem'}}>
-                          No doubts to show
-                      </div>
+                {
+                 doubts 
+        
+                 ?  
 
-                      : 
-                      
-                      doubts.map((doubt)=>(
-                        <Post post={doubt} key={doubt._id}/>
-                      )) 
-                   :
-                   <div className="loader">
-                       <Loader/>
-                   </div>
-               }
+                <InfiniteScroll
+
+                    dataLength={doubts.length}
+                    next={fetchMoreData}
+                    hasMore={loadMore}
+                    loader={
+                        loadMore ? 
+                        <div className="loader">
+                              <Loader/>
+                        </div>  : null
+                    }
+                    >
+                    {
+                    
+                                doubts.length===0 
+                                
+                                ?
+                                
+                                <div className="loader" style={{textAlign:'center',marginTop:'20vh',fontSize:'5rem'}}>
+                                    No Doubts to show
+                                </div> 
+                                
+                                :
+                                
+                                doubts.map((post)=>(
+                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} />
+                                )) 
+
+                        }
+                </InfiniteScroll>
+
+                :
+                <div className="loader">
+                    <Loader/>
+                </div>
+            }
             </div>
         );
 };

@@ -190,6 +190,7 @@ const CommonState = ({children})=>{
               emailActivation,
               emailActivated,
               user,
+              setUser,
               userFollowers , 
               setUserFollowers,
               setUserPosts,

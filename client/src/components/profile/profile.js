@@ -7,7 +7,7 @@ import CommonContext from "../../contexts/common/CommonContext";
 import "../../css/profile/profile.css";
 
 import Loader from "../Loader/Loader";
-import Post from "../home/post";
+import Post from "../../post/post";
 
 import { useHistory } from 'react-router-dom'
 
@@ -121,7 +121,7 @@ const Profile = ({location}) => {
                         <div className="avatar">
                           <img
                             src={setImageUrl(coder)}
-                            alt="Circle Image"
+                            alt="No image"
                             className="img-raised rounded-circle img-fluid"
                           />
                         </div>

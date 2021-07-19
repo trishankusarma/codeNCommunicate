@@ -120,17 +120,22 @@ const Home = ({location}) => {
         color:"white"
     }
 
+    const inActiveColor = {
+        backgroundColor: "white",
+        color:"grey"
+    }
+
     return (
         <div className="add_post_container">
 
             <nav className="nav_add"> 
                 <ul className="ul_add">
                     <li className="li_add" 
-                       style={ category===1 ? activeLiColor : null }
+                       style={ category===1 ? activeLiColor : inActiveColor }
                        onClick={ ()=>setCategory(1) }
                     >Post</li>
                     <li className="li_add"
-                       style={ category===2 ? activeLiColor : null }
+                       style={ category===2 ? activeLiColor : inActiveColor }
                        onClick={ ()=>setCategory(2) }
                     >Doubt</li>
                 </ul>
