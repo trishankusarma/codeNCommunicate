@@ -195,7 +195,7 @@ const replyImg="https://image.flaticon.com/icons/png/128/1933/1933011.png";
           />
         ))}
       {isLogged ? (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} style={{minHeight:"70px"}}>
           <input
           className="comment_box"
             type="text"
