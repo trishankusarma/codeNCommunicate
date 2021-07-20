@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { CLIENT_URL } from './constants';
+
 const Instance = axios.create({
-  baseURL: `${window.location.protocol}//${window.location.hostname}:8000`,
+  baseURL: CLIENT_URL,
   withCredentials:true,
   credentials:'include'
 });
