@@ -41,13 +41,13 @@ const userController = {
 
           return res.json({
             success: 0,
-            msg: "Email Inactive!Activatation link has been sent!",
+            msg: "Email Inactive,Activatation link has been sent!",
             user: null,
           });
         } else {
           return res.json({
             success: 0,
-            msg: "Email Inactive!Try Login With Email to get activation link!",
+            msg: "Email Inactive,Try Login With Email to get activation link!",
             user: null,
           });
         }
@@ -181,7 +181,7 @@ const userController = {
 
         return res.json({
           success: 0,
-          msg: "Email inactive! Activation link has been mailed! Please activate to proceed furthur!",
+          msg: "Email inactive,Activation link has been mailed! Please activate to proceed furthur!",
           user: null,
         });
       }

@@ -43,7 +43,7 @@ router.patch('/:_id', userAuth , upload.array('images',10)  ,  updatePost , post
 // like a post
 router.patch('/like/:_id', userAuth, likePost)
 
-//get all person liked
+//get all persons who liked the post
 router.get('/likes/:_id', userAuth, postLikedPersons)
 
 //get all comments
@@ -77,7 +77,7 @@ router.delete('/comment/delete_reply/:comment_id', userAuth, deleteReply)
 
 // we will use websockets for the notifications + posts for automatic updates
 
-//************* *
+//*****************
 
 // Delete a post
 // delete post

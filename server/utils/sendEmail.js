@@ -45,10 +45,10 @@ const sendEmail = (to, url, txt) => {
     const mailOptions = {
         from: SENDER_EMAIL_ADDRESS,
         to: to,
-        subject: "CP Community",
+        subject: "codeNcommunicate",
         html: `
             <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
-            <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to our CP Community</h2>
+            <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to codeNcommunicate</h2>
             <p>Congratulations! You're almost set to be a part of it.
                 Just click the button below to ${txt}.
             </p>

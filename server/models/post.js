@@ -12,11 +12,6 @@ const postSchema = Schema({
         type:String
     },
 
-    // default-> 0
-    // post 
-    // type===1
-    // doubt
-
     postType:{
         
        type:Number,
