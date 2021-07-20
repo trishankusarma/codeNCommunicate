@@ -7,7 +7,7 @@ import CommonContext from "../../contexts/common/CommonContext";
 import "../../css/profile/profile.css";
 
 import Loader from "../Loader/Loader";
-import Post from "../../post/post";
+import Post from "../post/post";
 
 import { useHistory } from 'react-router-dom'
 

@@ -20,6 +20,8 @@ import LoginRegister from "./components/user_login_register/login_register";
 import EditProfile from './components/profile/profileEdit';
 import PrivateRoute from "./privateRoute/privateRoute";
 
+import SinglePost from './components/singlePost'
+
 import Toast from "./utilsClient/toast/Toast";
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
           <PrivateRoute exact path="/user/edit" component={EditProfile} />
 
           <Route path="/user/login" component={LoginRegister} />
+          <Route path="/post/:_id" component={SinglePost} />
 
           <Route
             path="/user/activate/:activationToken"

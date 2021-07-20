@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import ImageSlider from "../components/imageSlider/imageSlider";
+import ImageSlider from "../imageSlider/imageSlider";
 
 import parse from "html-react-parser";
 
-import Axiosinstance from "../utilsClient/AxiosInstance";
+import Axiosinstance from "../../utilsClient/AxiosInstance";
 
-import CommonContext from "../contexts/common/CommonContext";
+import CommonContext from "../../contexts/common/CommonContext";
 
-import Comments from "../components/comments/comments";
+import Comments from "../comments/comments";
 
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Button from '@material-ui/core/button'
 
-const Post = ({ post, profile , editPost , deletePost , userId }) => {
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+import { CLIENT_URL } from '../../utilsClient/constants'
+
+const Post = ({ post, profile , editPost , deletePost , userId , doubt }) => {
   const {
     isLogged,
     setError,
@@ -23,6 +27,8 @@ const Post = ({ post, profile , editPost , deletePost , userId }) => {
     userFollowers,
     setUserFollowers,
   } = useContext(CommonContext);
+
+  const [ copied , setCopied ] = useState(false)
 
   const [postLiked, setPostLiked] = useState(false);
 
@@ -250,87 +256,96 @@ const visitProfile = async (_id) => {
           <h4 style={{ color: "white" }}>{post.owner.name}</h4>
         </div>
 
-        {!profile ? (
-          <div class="right">
-            {
-              post?.owner?.cf_handle
-               ?  
+        {
+          !doubt ?
+          !profile ? (
+            <div class="right">
+              {
+                post?.owner?.cf_handle 
+                 ?  
+                <button>
+                 <a
+                   href={`https://codeforces.com/profile/${post.owner.cf_handle}`}
+                   target="_blank"
+                 >
+                   <img class="cf" src="image/cf.png" alt="" />
+                 </a>
+               </button>
+               : null
+              }
+  
+              {
+                post?.owner?.cc_handle
+                ?
+                <button>
+                <a
+                  href={`https://www.codechef.com/users/${post.owner.cc_handle}`}
+                  target="_blank"
+                >
+                  <img class="cc" src="image/cc.png" alt="cc" />
+                </a>
+              </button>
+               : null
+              }
+              {
+                post?.owner?.ln_handle
+                ?  
+               <button>
+                <a href={`${post.owner.ln_handle}`} target="_blank">
+                  <img class="linkdin cc" src="image/linkedin.png" alt="" />
+                </a>
+              </button>
+              : null
+              }
+  
               <button>
-               <a
-                 href={`https://codeforces.com/profile/${post.owner.cf_handle}`}
-                 target="_blank"
-               >
-                 <img class="cf" src="image/cf.png" alt="" />
-               </a>
-             </button>
-             : null
-            }
-
-            {
-              post?.owner?.cc_handle
-              ?
-              <button>
-              <a
-                href={`https://www.codechef.com/users/${post.owner.cc_handle}`}
-                target="_blank"
-              >
-                <img class="cc" src="image/cc.png" alt="cc" />
-              </a>
-            </button>
-             : null
-            }
-            {
-              post?.owner?.ln_handle
-              ?  
-             <button>
-              <a href={`${post.owner.ln_handle}`} target="_blank">
-                <img class="linkdin cc" src="image/linkedin.png" alt="" />
-              </a>
-            </button>
+                <img
+                  class="follow cc"
+                  src="image/follow.png"
+                  alt="cc"
+                  onClick={followUser}
+                  style={userFollowed ? followStyle : null}
+                />
+              </button>
+            </div>
+          ) : 
+            !userId
+            ? 
+            <div className="right">
+                <Button
+                    onClick={()=>editPost(post?._id)}
+                    style={{ background:'white', color:'black',borderRadius:'10px'}}
+                >
+                     EDIT
+                </Button>
+  
+                <Button
+                    onClick={()=>deletePost(post?._id)}
+                    style={{ background:'white', color:'black', borderRadius:'10px'}}
+                >
+                     DELETE
+                </Button>
+            </div>
             : null
-            }
-
-            <button>
-              <img
-                class="follow cc"
-                src="image/follow.png"
-                alt="cc"
-                onClick={followUser}
-                style={userFollowed ? followStyle : null}
-              />
-            </button>
-          </div>
-        ) : 
-          !userId
-          ? 
-          <div className="right">
-              <Button
-                  onClick={()=>editPost(post?._id)}
-                  style={{ background:'white', color:'black',borderRadius:'10px'}}
-              >
-                   EDIT
-              </Button>
-
-              <Button
-                  onClick={()=>deletePost(post?._id)}
-                  style={{ background:'white', color:'black', borderRadius:'10px'}}
-              >
-                   DELETE
-              </Button>
-          </div>
-          : null
+           : null
         }
       </div>
 
       <form action="">
-        <input
-          type="text"
-          name=""
-          id=""
-          placeholder="title.."
-          value={post?.title}
-          readOnly
-        />
+        
+        <Link 
+           to={`/post/${post?._id}`}
+        >
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="title.."
+            value={post?.title}
+            style={{ cursor:'pointer' }}
+            readOnly
+          />
+        </Link>
 
         <br />
 
@@ -352,7 +367,21 @@ const visitProfile = async (_id) => {
         </button>
 
         <button onClick={getComments}>comment</button>
-        <button>share</button>
+        {
+          !copied 
+          ? 
+          <button>
+            <CopyToClipboard text={`${CLIENT_URL}/post/${post?._id}`}
+                onCopy={()=>setCopied(true)}
+            >
+              <span>Share</span>
+            </CopyToClipboard>
+          </button>
+         :
+         <button style={{background:'green'}}>
+             Link Copied
+         </button>
+        }
       </div>
 
       <div>

@@ -6,7 +6,7 @@ import AxiosInstance from '../../utilsClient/AxiosInstance'
 
 import Loader from '../Loader/Loader'
 
-import Post from "../../post/post";
+import Post from "../post/post";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -20,7 +20,7 @@ const Home = () => {
 
         useEffect(async () => {
 
-            const limit = 2
+            const limit = 10
            
             const res = await AxiosInstance.get(`/?postType=1&limit=${limit}&skip=${skipIndex}`)
 
@@ -72,7 +72,7 @@ const Home = () => {
                                 :
                                 
                                 doubts.map((post)=>(
-                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} />
+                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} doubt={true}/>
                                 )) 
 
                         }

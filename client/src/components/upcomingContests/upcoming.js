@@ -27,39 +27,38 @@ const Upcoming = () => {
             <div>No Post TO show</div>
           ) : (
             contests.map((contest, index) => (
-              <div key={contest._id}>
-                  <div style={{textAlign:'center'}}>
                     <a
                       href="https://codeforces.com/contests"
                       target='_blank'
                       className="news__card"
+                      key={contest._id}
                     >
                       <img
                         src="https://i1.wp.com/sltechnicalacademy.com/wp-content/uploads/2021/01/codefoces.jpg?resize=800%2C497&ssl=1"
                         alt=""
                       />
+                     <div style={{marginTop:'30px'}}>
                       <h2>{contest.name}</h2>
-                      <p>
-                        <strong>
-                          Start Time:{" "}
-                          {new Date(
-                            contest.startTimeSeconds * 1000
-                          ).toLocaleString()}
-                          ,
-                          {new Date(
-                            contest.startTimeSeconds * 1000
-                          ).toLocaleString("en-US", { weekday: "long" })}{" "}
-                        </strong>
-                      </p>
-                      <p>
-                        <strong>
-                          Contest Duration:{" "}
-                          {contest.durationSeconds / (60 * 60)} hrs
-                        </strong>
-                      </p>
+                        <p>
+                          <strong>
+                            Start Time:{" "}
+                            {new Date(
+                              contest.startTimeSeconds * 1000
+                            ).toLocaleString()}
+                            ,
+                            {new Date(
+                              contest.startTimeSeconds * 1000
+                            ).toLocaleString("en-US", { weekday: "long" })}{" "}
+                          </strong>
+                        </p>
+                        <p>
+                          <strong>
+                            Contest Duration:{" "}
+                            {contest.durationSeconds / (60 * 60)} hrs
+                          </strong>
+                        </p>
+                     </div>
                     </a>
-                  </div>
-              </div>
             ))
           )
         ) : (
