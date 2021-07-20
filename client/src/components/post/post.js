@@ -228,7 +228,7 @@ const Post = ({ post, profile , editPost , deletePost , userId , doubt }) => {
 
       return base64Flag + imageStr;
     } else {
-      return "image/me.jpg";
+      return "../image/me.jpg";
     }
   };
 
@@ -268,7 +268,7 @@ const visitProfile = async (_id) => {
                    href={`https://codeforces.com/profile/${post.owner.cf_handle}`}
                    target="_blank"
                  >
-                   <img class="cf" src="image/cf.png" alt="" />
+                   <img class="cf" src="../image/cf.png" alt="" />
                  </a>
                </button>
                : null
@@ -282,7 +282,7 @@ const visitProfile = async (_id) => {
                   href={`https://www.codechef.com/users/${post.owner.cc_handle}`}
                   target="_blank"
                 >
-                  <img class="cc" src="image/cc.png" alt="cc" />
+                  <img class="cc" src="../image/cc.png" alt="cc" />
                 </a>
               </button>
                : null
@@ -292,7 +292,7 @@ const visitProfile = async (_id) => {
                 ?  
                <button>
                 <a href={`${post.owner.ln_handle}`} target="_blank">
-                  <img class="linkdin cc" src="image/linkedin.png" alt="" />
+                  <img class="linkdin cc" src="../image/linkedin.png" alt="" />
                 </a>
               </button>
               : null
@@ -301,7 +301,7 @@ const visitProfile = async (_id) => {
               <button>
                 <img
                   class="follow cc"
-                  src="image/follow.png"
+                  src="../image/follow.png"
                   alt="cc"
                   onClick={followUser}
                   style={userFollowed ? followStyle : null}
