@@ -282,7 +282,7 @@ const ProfileEdit = () => {
 
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="city">City</label>
+                <label for="city" style={{marginRight:"1%"}}>Profile:</label>
                 <input
                   type="file"
                   name="profileImage"

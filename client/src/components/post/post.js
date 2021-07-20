@@ -393,7 +393,7 @@ const visitProfile = async (_id) => {
             onChange={(e) => setComment(e.target.value)}
             required
           />
-          <button type="submit">Add</button>
+          <button type="submit" style={{marginTop:"1.5%"}}>Add</button>
         </form>
       </div>
 
