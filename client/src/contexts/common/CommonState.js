@@ -26,6 +26,8 @@ const CommonState = ({children})=>{
 
    const [ userFollowers , setUserFollowers ] = useState(null)
 
+   const [ copied , setCopied ] = useState(null)
+
    useEffect(async() => {
 
       setError(null)
@@ -185,6 +187,8 @@ const CommonState = ({children})=>{
    return(
        <CommonContext.Provider
           value={{
+              copied,
+              setCopied,
               response,
               setResponse,
               error,

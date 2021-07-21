@@ -1,4 +1,4 @@
-import React,{ useState , useEffect } from "react";
+import React,{ useState , useEffect, useContext } from "react";
 
 import "../../css/home/home.css";
 
@@ -10,7 +10,11 @@ import Post from "../post/post";
 
 import { useParams , useHistory } from "react-router-dom";
 
+import CommonContext from "../../contexts/common/CommonContext";
+
 const SinglePost = () => {
+
+        const { copied , setCopied } = useContext(CommonContext)
 
         const [ post , setPost ] = useState(null)
 
@@ -35,7 +39,7 @@ const SinglePost = () => {
 
              {
                 post ?                
-                  <Post post={post} key={post._id}/>
+                  <Post post={post} key={post._id} copied={copied} setCopied={setCopied} />
                 :
                 <div className="loader">
                     <Loader/>

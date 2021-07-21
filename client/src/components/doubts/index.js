@@ -1,4 +1,4 @@
-import React,{ useState , useEffect } from "react";
+import React,{ useState , useEffect, useContext } from "react";
 
 import "../../css/home/home.css";
 
@@ -10,7 +10,11 @@ import Post from "../post/post";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import CommonContext from "../../contexts/common/CommonContext";
+
 const Home = () => {
+
+        const { copied , setCopied } = useContext(CommonContext)
 
         const [ doubts , setDoubts ] = useState(null)
 
@@ -72,7 +76,7 @@ const Home = () => {
                                 :
                                 
                                 doubts.map((post)=>(
-                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} doubt={true}/>
+                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex}  copied={copied} setCopied={setCopied} />
                                 )) 
 
                         }
