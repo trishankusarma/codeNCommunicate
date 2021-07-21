@@ -4,7 +4,7 @@ import CommonContext from '../../contexts/common/CommonContext'
 
 import AxiosInstance  from '../../utilsClient/AxiosInstance'
 
-const Reply = ({reply , commentId , setDeleteReplyId }) => {
+const Reply = ({reply , commentId , setDeleteReplyId , setImageUrl }) => {
 
     const { user , isLogged , setError , setResponse } = useContext(CommonContext)
 
@@ -95,7 +95,7 @@ const Reply = ({reply , commentId , setDeleteReplyId }) => {
         <div className="comment" style={{marginLeft:'50px'}}>
 
             <div className="author">
-                <img src="https://gravatar.com/avatar/2bed492de7e05b95ffd2581cd0f4b83d?s=60&d=identicon" />
+                <img src={setImageUrl(reply.author)}/>
                 <button className="author_name">{reply.author.name}</button>
             </div>
 

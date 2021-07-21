@@ -18,7 +18,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import { CLIENT_URL } from '../../utilsClient/constants'
 
-const Post = ({ post, profile , editPost , deletePost , userId , doubt }) => {
+const Post = ({ post, profile , editPost , deletePost , userId , copied , setCopied }) => {
   const {
     isLogged,
     setError,
@@ -27,8 +27,6 @@ const Post = ({ post, profile , editPost , deletePost , userId , doubt }) => {
     userFollowers,
     setUserFollowers,
   } = useContext(CommonContext);
-
-  const [ copied , setCopied ] = useState(false)
 
   const [postLiked, setPostLiked] = useState(false);
 
@@ -236,6 +234,8 @@ const Post = ({ post, profile , editPost , deletePost , userId , doubt }) => {
     if (closeComments) {
       const res = await Axiosinstance.get(`/post/comment/${post._id}`);
 
+      console.log("comments",res.data.comments)
+
       if (res.data.success === 1) {
         await setComments(res.data.comments);
       }
@@ -257,7 +257,6 @@ const visitProfile = async (_id) => {
         </div>
 
         {
-          !doubt ?
           !profile ? (
             <div class="right">
               {
@@ -327,7 +326,6 @@ const visitProfile = async (_id) => {
                 </Button>
             </div>
             : null
-           : null
         }
       </div>
 
@@ -338,7 +336,7 @@ const visitProfile = async (_id) => {
         >
           <input
             type="text"
-            name=""
+            name="title"
             id=""
             placeholder="title.."
             value={post?.title}
@@ -368,19 +366,27 @@ const visitProfile = async (_id) => {
 
         <button onClick={getComments}>comment</button>
         {
-          !copied 
-          ? 
-          <button>
-            <CopyToClipboard text={`${CLIENT_URL}/post/${post?._id}`}
-                onCopy={()=>setCopied(true)}
-            >
-              <span>Share</span>
-            </CopyToClipboard>
-          </button>
-         :
-         <button style={{background:'green'}}>
+          copied===`${CLIENT_URL}/post/${post?._id}`
+          ?
+           <button style={{background:'green'}}
+                onClick={()=>{
+                    if(copied===`${CLIENT_URL}/post/${post?._id}`){
+                      return setCopied(null)
+                    }
+                }}
+           >
              Link Copied
-         </button>
+          </button>
+          :
+          <CopyToClipboard text={`${CLIENT_URL}/post/${post?._id}`}
+              onCopy={()=>{
+                setCopied(`${CLIENT_URL}/post/${post?._id}`)
+              }}
+          >
+            <button>
+              <span>Share</span>
+            </button>
+          </CopyToClipboard>
         }
       </div>
 
@@ -402,6 +408,7 @@ const visitProfile = async (_id) => {
           comments={comments}
           closeComments={closeComments}
           setComments={setComments}
+          setImageUrl={setImageUrl}
         />
       </div>
     </div>

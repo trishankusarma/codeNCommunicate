@@ -18,6 +18,8 @@ const Home = () => {
 
         const [ loadMore , setLoadMore ] = useState(true)
 
+        const [ copied , setCopied ] = useState(null)
+
         useEffect(async () => {
 
             const limit = 10
@@ -73,7 +75,7 @@ const Home = () => {
                                 :
                                 
                                 posts.map((post)=>(
-                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} />
+                                    <Post post={post} key={post._id} skipIndex={skipIndex} setSkipIndex={setSkipIndex} copied={copied} setCopied={setCopied}/>
                                 )) 
 
                         }

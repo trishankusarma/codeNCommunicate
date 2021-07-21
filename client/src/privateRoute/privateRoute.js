@@ -8,7 +8,7 @@ const PrivateRoute = ({component:Component , ...rest}) => {
     return (
         <Route 
            {...rest}
-           render = {props => !Cookie.get('authorization') ? ( <Redirect to='/user/login'/>) : (<Component {...props}/>) }
+           render = {props => !Cookie.get('codeNcommunityAuth') ? ( <Redirect to='/user/login'/>) : (<Component {...props}/>) }
         />
     )
 }

@@ -27,11 +27,11 @@ const Navbar = () => {
          break
       
       case "/public/add":
-        !Cookie.get('authorization') ?  setActiveLi(6) : setActiveLi(2)
+        !Cookie.get('codeNcommunityAuth') ?  setActiveLi(6) : setActiveLi(2)
         break
       
       case "/public/myCommunity":
-        !Cookie.get('authorization') ?  setActiveLi(6) : setActiveLi(3)
+        !Cookie.get('codeNcommunityAuth') ?  setActiveLi(6) : setActiveLi(3)
         break
       
       case "/public/upcoming":
@@ -39,7 +39,7 @@ const Navbar = () => {
         break
 
       case "/user":
-        !Cookie.get('authorization') ?  setActiveLi(6) : setActiveLi(5)
+        !Cookie.get('codeNcommunityAuth') ?  setActiveLi(6) : setActiveLi(5)
         break
       
       case "/user/login":
@@ -126,7 +126,7 @@ const Navbar = () => {
                   className="nav-link"
                   to="/public/add"
                   onClick={() => {
-                    Cookie.get('authorization') ?
+                    Cookie.get('codeNcommunityAuth') ?
                         setActiveLi(2)   :
                         setActiveLi(6)
                   }}
@@ -141,7 +141,7 @@ const Navbar = () => {
                   className="nav-link"
                   to="/public/myCommunity"
                   onClick={() => {
-                    Cookie.get('authorization') ?
+                    Cookie.get('codeNcommunityAuth') ?
                     setActiveLi(3)   :
                     setActiveLi(6)
                   }}
@@ -167,7 +167,7 @@ const Navbar = () => {
                   className="nav-link"
                   to="/user"
                   onClick={() => {
-                    Cookie.get('authorization') ?
+                    Cookie.get('codeNcommunityAuth') ?
                         setActiveLi(5)   :
                         setActiveLi(6)
                   }}

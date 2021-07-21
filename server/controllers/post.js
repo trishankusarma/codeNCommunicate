@@ -22,7 +22,11 @@ const postController = {
                 success:0,
                 msg:'post unavailable',
             })
-        }
+           }
+
+           await post
+                .populate('owner','name profileImage profileImageType cf_handle cc_handle ln_link')    
+                .execPopulate()
 
            return res.json({
               success:1,
@@ -337,10 +341,10 @@ const postController = {
                 path:'comments',
                 populate:{
                     path:'replies author',
-                    select:'name',
+                    select:'name profileImage profileImageType',
                     populate: {
                       path: 'author',
-                      select:'name'
+                      select:'name profileImage profileImageType'
                     }
                   }
             })
@@ -382,10 +386,10 @@ const postController = {
             await comment
             .populate({
                   path:'replies author',
-                  select:'name',
+                  select:'name profileImage profileImageType',
                   populate: {
                     path: 'author',
-                    select:'name'
+                    select:'name profileImage profileImageType'
                   }
             })
             .execPopulate()
@@ -429,10 +433,11 @@ const postController = {
 
             await base_comment
                   .populate({
-                    path: 'replies',
+                    path: 'replies author',
+                    select:'name profileImage profileImageType',
                     populate: {
                       path: 'author',
-                      select:'name'
+                      select:'name profileImage profileImageType'
                     }
                   }).execPopulate()
 

@@ -6,7 +6,7 @@ import Reply from "./reply";
 import CommonContext from "../../contexts/common/CommonContext";
 import "../comments/comment.css";
 
-const Comment = ({ comment, setDeleteCommentId }) => {
+const Comment = ({ comment, setDeleteCommentId , setImageUrl }) => {
   const { user, isLogged, setError, setResponse } = useContext(CommonContext);
 
   const [reply, setReply] = useState("");
@@ -137,7 +137,7 @@ const replyImg="https://image.flaticon.com/icons/png/128/1933/1933011.png";
   return (
     <div className="comment">
       <div className="author">
-        <img src="https://gravatar.com/avatar/2bed492de7e05b95ffd2581cd0f4b83d?s=60&d=identicon" />
+        <img src={setImageUrl(comment.author)}/>
         <button className="author_name">{comment.author.name}</button>
       </div>
       {editCommentState === 0 ? (
@@ -192,6 +192,7 @@ const replyImg="https://image.flaticon.com/icons/png/128/1933/1933011.png";
             commentId={comment._id}
             key={reply._id}
             setDeleteReplyId={setDeleteReplyId}
+            setImageUrl={setImageUrl}
           />
         ))}
       {isLogged ? (

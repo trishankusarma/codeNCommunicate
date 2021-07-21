@@ -29,19 +29,29 @@ const CommonState = ({children})=>{
    useEffect(async() => {
 
       setError(null)
+      
+      try {
+           
+          
+            const res = await AxiosInstance.get('/user/isAuthenticated')
 
-      const res = await AxiosInstance.get('/user/isAuthenticated')
+            if(res.data.success===1){
+                setIsLogged(true)
+                setUser(res.data.user)
 
-      if(res.data.success===1){
-          setIsLogged(true)
-          setUser(res.data.user)
+                setUserFollowers(res.data.user.followers)
 
-          setUserFollowers(res.data.user.followers)
+                return
+            }
 
-          return
+            setError('Authenticate to procced furthur!')
+
+      } catch (error) {
+
+          console.log(error)
+          
+          setError('Authenticate to procced furthur!')
       }
-
-      setError('Authenticate to procced furthur!')
    }, [])
 
    const login = async (user)=>{

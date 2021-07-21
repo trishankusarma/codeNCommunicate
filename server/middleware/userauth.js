@@ -5,7 +5,7 @@ const { User } = require('../models')
 const userAuth = (req, res, next) => {
 
     try {
-        const token = req.cookies.authorization
+        const token = req.cookies.codeNcommunityAuth
     
         if(!token) 
               return res.status(400).json({msg: "Invalid Authentication."})

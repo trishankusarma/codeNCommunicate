@@ -4,7 +4,7 @@ import Comment from './comment'
 
 import '../../css/home/comments.css'
 
-const Comments = ({comments , closeComments , setComments }) => {
+const Comments = ({comments , closeComments , setComments, setImageUrl }) => {
 
     const [ deleteCommentId , setDeleteCommentId ] = useState(null)
 
@@ -21,7 +21,7 @@ const Comments = ({comments , closeComments , setComments }) => {
         <div className='commentsSection'>
             {
                 !closeComments && comments && comments.map((comment)=>(
-                    <Comment comment={comment} key={comment._id} setDeleteCommentId={setDeleteCommentId}/>
+                    <Comment comment={comment} key={comment._id} setDeleteCommentId={setDeleteCommentId} setImageUrl={setImageUrl}/>
                 ))
             }
         </div>

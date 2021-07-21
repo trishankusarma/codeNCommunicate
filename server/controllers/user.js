@@ -57,7 +57,7 @@ const userController = {
 
       const token = await user.generateAuthToken();
 
-      res.cookie("authorization", token, cookieConfig);
+      res.cookie("codeNcommunityAuth", token, cookieConfig);
 
       res.json({
         success: 1,
@@ -148,7 +148,7 @@ const userController = {
 
           const token = await inActiveUser.generateAuthToken();
 
-          res.cookie("authorization", token, cookieConfig);
+          res.cookie("codeNcommunityAuth", token, cookieConfig);
 
           res.json({
             success: 1,
@@ -242,7 +242,7 @@ const userController = {
 
           const token = await userU.generateAuthToken();
 
-          res.cookie("authorization", token, cookieConfig);
+          res.cookie("codeNcommunityAuth", token, cookieConfig);
 
           res.json({
             success: 1,
@@ -462,7 +462,7 @@ const userController = {
 
   logout: async (req, res) => {
     try {
-      res.clearCookie("authorization");
+      res.clearCookie("codeNcommunityAuth");
 
       res.json({
         success: 1,
