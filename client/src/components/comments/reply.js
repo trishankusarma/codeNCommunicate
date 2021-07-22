@@ -150,8 +150,7 @@ const Reply = ({reply , commentId , setDeleteReplyId , setImageUrl }) => {
             }
 
          <a className="no_of_like">
-                {noOfLikes} 
-          likes
+                {noOfLikes} likes 
          </a>
 
         </div>   
