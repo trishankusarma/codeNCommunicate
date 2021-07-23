@@ -12,7 +12,7 @@ import Comments from "../comments/comments";
 
 import { Link, useHistory } from "react-router-dom";
 
-import Button from '@material-ui/core/button'
+import { Button } from '@material-ui/core'
 
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
